@@ -30,6 +30,7 @@ function Person(name, cash) {
 
   this.name = String(name)
   this.cash = Number(cash)
+  this.bag = []
 
   // If cash is NaN or less the zero, cap it at zero
   if (this.cash !== this.cash || this.cash < 0) this.cash = 0
@@ -47,8 +48,8 @@ Person.prototype = {
 
         if (ware.stock > 0 && this.cash >= ware.price) {
           ware.stock--
-          this.cash -= were.price
-          this.wares.push(ware.item)
+          this.cash -= ware.price
+          this.bag.push(ware.item)
         } else {
           console.log("Out of cash", this.cash)
           break // or return

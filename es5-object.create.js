@@ -38,6 +38,7 @@ function Person(name, cash) {
 
   this.name = String(name)
   this.cash = Number(cash)
+  this.bag = []
 
   // If cash is NaN or less the zero, cap it at zero
   if (this.cash !== this.cash || this.cash < 0) this.cash = 0
@@ -63,8 +64,8 @@ Person.prototype = Object.create(Object.prototype, {
 
           if (ware.stock > 0 && this.cash >= ware.price) {
             ware.stock--
-            this.cash -= were.price
-            this.wares.push(ware.item)
+            this.cash -= ware.price
+            this.bag.push(ware.item)
           } else {
             console.log("Out of cash", this.cash)
             break // or return
@@ -106,67 +107,3 @@ Fool.prototype = Object.create(Person.prototype, {
     }
   }
 })
-
-var kedesh = new Bazaar([
-  {
-    apples: {
-      stock: 70,
-      price: 5,
-      item: {
-        name: "Apple",
-        type: "fruit"
-      }
-    },
-    pears: {
-      stock: 50,
-      price: 7,
-      item: {
-        name: "Pear",
-        type: "fruit"
-      }
-    },
-    oranges: {
-      stock: 20,
-      price: 10,
-      item: {
-        name: "Orange",
-        type: "fruit"
-      }
-    }
-  }, {
-    granite: {
-      stock: 4,
-      price: 30,
-      item: {
-        name: "Granite",
-        type: "stone"
-      }
-    },
-    marble: {
-      stock: 1,
-      price: 100,
-      item: {
-        name: "Marble",
-        type: "stone"
-      }
-    }
-  }, {
-    spruce: {
-      stock: 10,
-      price: 15,
-      item: {
-        name: "Spruce plank",
-        type: "wood"
-      }
-    },
-    birch: {
-      stock: 10,
-      price: 15,
-      item: {
-        name: "Birch plank",
-        type: "wood"
-      }
-    }
-  }
-])
-
